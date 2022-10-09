@@ -1,17 +1,10 @@
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import UserInput from "./UserInput";
 
 const Calculator = () => {
   const [recipeValue, setRecipeValue] = useState("0");
   const [volumeValue, setVolumeValue] = useState("0");
   const [massValue, setMassValue] = useState("0");
-
-  const handleRecipeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setRecipeValue(e.target.value);
-  };
-
-  const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setVolumeValue(e.target.value);
-  };
 
   useEffect(() => {
     const concentration = parseFloat(recipeValue) || 0;
@@ -32,31 +25,21 @@ const Calculator = () => {
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 py-4 px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">What is the agar recipe?</p>
-          <div className="flex gap-2 font-noto-mono">
-            <input
-              type="number"
-              value={recipeValue}
-              onChange={handleRecipeChange}
-              className="w-full rounded-sm bg-zinc-100 px-2 text-2xl font-semibold text-black "
-            />
+          <div className="flex gap-2">
+            <UserInput value={recipeValue} setValue={setRecipeValue} />
             <span>g/L</span>
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-lg">What is the final volume you need?</p>
-          <div className="flex gap-2 font-noto-mono">
-            <input
-              type="number"
-              value={volumeValue}
-              onChange={handleVolumeChange}
-              className="w-full rounded-sm bg-zinc-100 px-2 text-2xl font-semibold text-black "
-            />
+          <div className="flex gap-2">
+            <UserInput value={volumeValue} setValue={setVolumeValue} />
             <span>mL</span>
           </div>
         </div>
       </div>
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 py-4 px-16">
-        <div className="flex flex-col gap-2 font-noto-mono">
+        <div className="flex flex-col gap-2">
           <p className="text-lg">You should put this amount of powder:</p>
           <div className="flex gap-2">
             <input
