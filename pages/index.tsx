@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Calculator from "../components/Calculator";
+import AgarCalculator from "../components/AgarCalculator";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className=" flex min-h-screen w-full flex-col items-center justify-start p-16">
-        <Calculator />
+        <AgarCalculator />
       </main>
 
       <footer className={styles.footer}>
