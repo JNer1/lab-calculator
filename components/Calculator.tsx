@@ -32,7 +32,7 @@ const Calculator = () => {
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 py-4 px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">What is the agar recipe?</p>
-          <div className="flex gap-2">
+          <div className="flex gap-2 font-noto-mono">
             <input
               type="number"
               value={recipeValue}
@@ -44,7 +44,7 @@ const Calculator = () => {
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-lg">What is the final volume you need?</p>
-          <div className="flex gap-2">
+          <div className="flex gap-2 font-noto-mono">
             <input
               type="number"
               value={volumeValue}
@@ -56,7 +56,7 @@ const Calculator = () => {
         </div>
       </div>
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 py-4 px-16">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 font-noto-mono">
           <p className="text-lg">You should put this amount of powder:</p>
           <div className="flex gap-2">
             <input
