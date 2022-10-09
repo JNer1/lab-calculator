@@ -26,6 +26,10 @@ a {
   box-sizing: border-box;
 }
 
+input[type="number"] {
+  font-family: "Noto Sans Mono", monospace;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
