@@ -18,7 +18,7 @@ const Calculator = () => {
     const finalvol = parseFloat(volumeValue) || 0;
 
     const getMassValue = () => {
-      setMassValue((conectration + finalvol).toString());
+      setMassValue(((conectration * finalvol) / 1000).toString());
     };
 
     getMassValue();
