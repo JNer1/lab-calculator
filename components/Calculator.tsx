@@ -27,7 +27,8 @@ const Calculator = () => {
   }, [recipeValue, volumeValue]);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col items-center gap-8">
+      <h1 className="text-center text-3xl font-bold">Lab Calculator</h1>
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 py-4 px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">What is the agar recipe?</p>
