@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className=" flex min-h-screen w-full flex-col items-center justify-start p-16">
+      <main className="flex min-h-screen w-full flex-col items-center justify-start p-16">
         <AgarCalculator />
       </main>
 
