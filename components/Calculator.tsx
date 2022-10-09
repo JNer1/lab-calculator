@@ -14,11 +14,13 @@ const Calculator = () => {
   };
 
   useEffect(() => {
-    const conectration = parseFloat(recipeValue) || 0;
+    const concentration = parseFloat(recipeValue) || 0;
     const finalvol = parseFloat(volumeValue) || 0;
 
+    const getMassFormula = (concentration * finalvol) / 1000;
+
     const getMassValue = () => {
-      setMassValue(((conectration * finalvol) / 1000).toString());
+      setMassValue(getMassFormula.toFixed(2).toString());
     };
 
     getMassValue();
@@ -35,7 +37,7 @@ const Calculator = () => {
             onChange={handleRecipeChange}
             className="w-full rounded-sm bg-zinc-100 px-2 text-2xl font-semibold text-black "
           />
-          <span>g/mL</span>
+          <span>g/L</span>
         </div>
       </div>
       <div className="flex flex-col gap-2">
@@ -51,7 +53,7 @@ const Calculator = () => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-lg">What is the final volume you need?</p>
+        <p className="text-lg">You should put this amount of powder:</p>
         <div className="flex gap-2">
           <input
             readOnly
