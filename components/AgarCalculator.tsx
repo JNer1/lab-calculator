@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import UserInput from "./UserInput";
 
-const Calculator = () => {
+const AgarCalculator = () => {
   const [recipeValue, setRecipeValue] = useState("0");
   const [volumeValue, setVolumeValue] = useState("0");
   const [massValue, setMassValue] = useState("0");
@@ -60,4 +60,4 @@ const Calculator = () => {
   );
 };
 
-export default Calculator;
+export default AgarCalculator;
