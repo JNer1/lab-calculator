@@ -19,7 +19,6 @@ const Home: NextPage = () => {
       </Head>
 
       <Navbar />
-
       <main className="flex min-h-screen w-full flex-col items-center justify-start p-4 lg:p-16">
         <AgarCalculator />
       </main>
