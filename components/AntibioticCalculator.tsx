@@ -38,27 +38,55 @@ const AntibioticCalculator = () => {
     <div className="flex flex-col items-center gap-8">
       <h1 className="text-center text-3xl font-bold">Antibiotic Calculator</h1>
 
-      <div className="flex gap-8">
-        <p>What state is your antibiotic?</p>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col">
+          <p className="">What state is your antibiotic?</p>
 
-        <div className="flex gap-4">
-          <input
-            id="isLiquid"
-            type="checkbox"
-            checked={isLiquid}
-            onChange={handleLiquidChange}
-          />
-          <label htmlFor="isLiquid">Liquid</label>
+          <div className="grid grid-cols-2 lg:grid-cols-3">
+            <div className="flex gap-4">
+              <input
+                id="isLiquid"
+                type="checkbox"
+                checked={isLiquid}
+                onChange={handleLiquidChange}
+              />
+              <label htmlFor="isLiquid">Liquid</label>
+            </div>
+            <div className="flex gap-4">
+              <input
+                id="isPowder"
+                type="checkbox"
+                checked={isPowder}
+                onChange={handlePowderChange}
+              />
+              <label htmlFor="isLiquid">Powder</label>
+            </div>
+          </div>
         </div>
 
-        <div className="flex gap-4">
-          <input
-            id="isPowder"
-            type="checkbox"
-            checked={isPowder}
-            onChange={handlePowderChange}
-          />
-          <label htmlFor="isLiquid">Powder</label>
+        <div className="flex flex-col">
+          <p className="">What concentration units do you need?</p>
+
+          <div className="grid grid-cols-2 lg:grid-cols-3">
+            <div className="flex gap-4">
+              <input
+                id="isLiquid"
+                type="checkbox"
+                checked={isLiquid}
+                onChange={handleLiquidChange}
+              />
+              <label htmlFor="isLiquid">units/mL</label>
+            </div>
+            <div className="flex gap-4">
+              <input
+                id="isPowder"
+                type="checkbox"
+                checked={isPowder}
+                onChange={handlePowderChange}
+              />
+              <label htmlFor="isLiquid">μg/mL</label>
+            </div>
+          </div>
         </div>
       </div>
 
