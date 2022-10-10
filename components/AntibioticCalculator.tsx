@@ -1,10 +1,25 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import UserInput from "./UserInput";
 
 const AntibioticCalculator = () => {
   const [recipeValue, setRecipeValue] = useState("0");
   const [volumeValue, setVolumeValue] = useState("0");
   const [massValue, setMassValue] = useState("0");
+
+  const [isLiquid, setIsLiquid] = useState(false);
+  const [isPowder, setIsPowder] = useState(false);
+
+  const handleLiquidChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (isPowder) setIsPowder(false);
+
+    setIsLiquid(e.target.checked);
+  };
+
+  const handlePowderChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (isLiquid) setIsLiquid(false);
+
+    setIsPowder(e.target.checked);
+  };
 
   useEffect(() => {
     const concentration = parseFloat(recipeValue) || 0;
@@ -22,6 +37,30 @@ const AntibioticCalculator = () => {
   return (
     <div className="flex flex-col items-center gap-8">
       <h1 className="text-center text-3xl font-bold">Antibiotic Calculator</h1>
+
+      <div className="flex gap-8">
+        <p>What state is your antibiotic?</p>
+
+        <div className="flex gap-4">
+          <input
+            id="isLiquid"
+            type="checkbox"
+            checked={isLiquid}
+            onChange={handleLiquidChange}
+          />
+          <label htmlFor="isLiquid">Liquid</label>
+        </div>
+
+        <div className="flex gap-4">
+          <input
+            id="isPowder"
+            type="checkbox"
+            checked={isPowder}
+            onChange={handlePowderChange}
+          />
+          <label htmlFor="isLiquid">Powder</label>
+        </div>
+      </div>
 
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 py-4 px-16">
         <div className="flex flex-col gap-2">
