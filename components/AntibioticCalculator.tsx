@@ -9,6 +9,9 @@ const AntibioticCalculator = () => {
   const [isLiquid, setIsLiquid] = useState(false);
   const [isPowder, setIsPowder] = useState(false);
 
+  const [isUnits, setIsUnits] = useState(false);
+  const [isMicro, setIsMicro] = useState(false);
+
   const handleLiquidChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (isPowder) setIsPowder(false);
 
@@ -19,6 +22,17 @@ const AntibioticCalculator = () => {
     if (isLiquid) setIsLiquid(false);
 
     setIsPowder(e.target.checked);
+  };
+
+  const handleUnitsChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (isMicro) setIsMicro(false);
+
+    setIsUnits(e.target.checked);
+  };
+  const handleMicroChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (isUnits) setIsUnits(false);
+
+    setIsMicro(e.target.checked);
   };
 
   useEffect(() => {
@@ -59,7 +73,7 @@ const AntibioticCalculator = () => {
                 checked={isPowder}
                 onChange={handlePowderChange}
               />
-              <label htmlFor="isLiquid">Powder</label>
+              <label htmlFor="isPowder">Powder</label>
             </div>
           </div>
         </div>
@@ -70,21 +84,21 @@ const AntibioticCalculator = () => {
           <div className="grid grid-cols-2 lg:grid-cols-3">
             <div className="flex gap-4">
               <input
-                id="isLiquid"
+                id="isUnits"
                 type="checkbox"
-                checked={isLiquid}
-                onChange={handleLiquidChange}
+                checked={isUnits}
+                onChange={handleUnitsChange}
               />
-              <label htmlFor="isLiquid">units/mL</label>
+              <label htmlFor="isUnits">units/mL</label>
             </div>
             <div className="flex gap-4">
               <input
-                id="isPowder"
+                id="isMicro"
                 type="checkbox"
-                checked={isPowder}
-                onChange={handlePowderChange}
+                checked={isMicro}
+                onChange={handleMicroChange}
               />
-              <label htmlFor="isLiquid">μg/mL</label>
+              <label htmlFor="isMicro">μg/mL</label>
             </div>
           </div>
         </div>
