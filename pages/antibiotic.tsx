@@ -3,6 +3,7 @@ import Head from "next/head";
 import AntibioticCalculator from "../components/AntibioticCalculator";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Navbar from "../components/Navbar";
 
 const Antibiotic: NextPage = () => {
   return (
@@ -16,6 +17,7 @@ const Antibiotic: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Navbar />
       <main className="flex min-h-screen w-full flex-col items-center justify-start p-16">
         <AntibioticCalculator />
       </main>
