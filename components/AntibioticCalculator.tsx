@@ -90,7 +90,7 @@ const AntibioticCalculator = () => {
         </div>
       </div>
 
-      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 py-4 px-16">
+      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 p-4 lg:px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">What is the agar recipe?</p>
           <div className="flex gap-2">
@@ -108,7 +108,7 @@ const AntibioticCalculator = () => {
         </div>
       </div>
 
-      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 py-4 px-16">
+      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 p-4 lg:px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">You should put this amount of powder:</p>
           <div className="flex gap-2">
