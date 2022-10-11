@@ -3,10 +3,11 @@ import { FocusEvent, SetStateAction, Dispatch, ChangeEvent } from "react";
 interface UserInputProps {
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
+  width?: string;
 }
 
 const UserInput = (props: UserInputProps) => {
-  const { value, setValue } = props;
+  const { value, setValue, width } = props;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const regex = /^[0-9\b]+$/;
@@ -28,7 +29,9 @@ const UserInput = (props: UserInputProps) => {
       value={value}
       onChange={handleChange}
       onBlur={handleBlur}
-      className="w-full rounded-sm bg-zinc-100 px-2 text-2xl font-semibold text-black "
+      className={`${
+        width ? width : "w-full"
+      } rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black`}
     />
   );
 };
