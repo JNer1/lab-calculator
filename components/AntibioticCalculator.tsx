@@ -6,10 +6,10 @@ const AntibioticCalculator = () => {
   const [volumeValue, setVolumeValue] = useState("0");
   const [massValue, setMassValue] = useState("0");
 
-  const [isLiquid, setIsLiquid] = useState(false);
+  const [isLiquid, setIsLiquid] = useState(true);
   const [isPowder, setIsPowder] = useState(false);
 
-  const [isUnits, setIsUnits] = useState(false);
+  const [isUnits, setIsUnits] = useState(true);
   const [isMicro, setIsMicro] = useState(false);
 
   const handleLiquidChange = (e: ChangeEvent<HTMLInputElement>) => {
