@@ -18,7 +18,7 @@ const Antibiotic: NextPage = () => {
       </Head>
 
       <Navbar />
-      <main className="flex min-h-screen w-full flex-col items-center justify-start p-4 lg:p-16">
+      <main className="flex min-h-screen w-full flex-col items-center justify-start p-4 lg:p-8">
         <AntibioticCalculator />
       </main>
 
