@@ -17,6 +17,12 @@ const UserInput = (props: UserInputProps) => {
     }
   };
 
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    if (e.target.value === "0") {
+      setValue("");
+    }
+  };
+
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     if (e.target.value === "") {
       setValue("0");
@@ -28,6 +34,7 @@ const UserInput = (props: UserInputProps) => {
       type="text"
       value={value}
       onChange={handleChange}
+      onFocus={handleFocus}
       onBlur={handleBlur}
       className={`${
         width ? width : "w-full"
