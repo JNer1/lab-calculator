@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import QuestionBlock from "./QuestionBlock";
 import UserInput from "./UserInput";
 
 const AgarCalculator = () => {
@@ -24,25 +25,19 @@ const AgarCalculator = () => {
       <h1 className="text-center text-3xl font-bold">Lab Calculator</h1>
 
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 p-4 lg:px-16">
-        <div className="flex flex-col gap-2">
-          <p className="text-lg">What is the agar recipe?</p>
-          <div className="flex gap-2">
-            <div>
-              <UserInput value={recipeValue} setValue={setRecipeValue} />
-            </div>
-            <span>g/L</span>
-          </div>
-        </div>
+        <QuestionBlock
+          question="What is the agar recipe?"
+          value={recipeValue}
+          setValue={setRecipeValue}
+          unit="g/L"
+        />
 
-        <div className="flex flex-col gap-2">
-          <p className="text-lg">What is the final volume you need?</p>
-          <div className="flex gap-2">
-            <div>
-              <UserInput value={volumeValue} setValue={setVolumeValue} />
-            </div>
-            <span>mL</span>
-          </div>
-        </div>
+        <QuestionBlock
+          question="What is the final volume you need?"
+          value={volumeValue}
+          setValue={setVolumeValue}
+          unit="mL"
+        />
       </div>
 
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 p-4 lg:px-16">
