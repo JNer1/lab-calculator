@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import QuestionBlock from "./QuestionBlock";
 import UserInput from "./UserInput";
 
 const AntibioticCalculator = () => {
@@ -114,41 +115,27 @@ const AntibioticCalculator = () => {
 
       <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 p-4 lg:px-16">
         {isLiquid && (
-          <div className="flex flex-col gap-2">
-            <p className="text-lg">What is your starting concentration?</p>
-            <div className="grid w-full grid-cols-4 place-content-end gap-x-2">
-              <UserInput
-                width="col-span-2"
-                value={initialConcentration}
-                setValue={setInitialConcentration}
-              />
-              <span className="col-span-1 self-end">
-                {isUnits ? "units/mL" : "μg/mL"}
-              </span>
-            </div>
-          </div>
+          <QuestionBlock
+            question="What is your starting concentration?"
+            value={initialConcentration}
+            setValue={setInitialConcentration}
+            unit={isUnits ? "units/mL" : "μg/mL"}
+          />
         )}
 
-        <div className="flex flex-col gap-2">
-          <p className="text-lg">What concentration do you need?</p>
-          <div className="grid w-full grid-cols-4 place-content-end gap-x-2">
-            <UserInput
-              width="col-span-2"
-              value={finalConcentration}
-              setValue={setFinalConcentration}
-            />
-            <span className="col-span-1 self-end">
-              {isUnits ? "units/mL" : "μg/mL"}
-            </span>
-          </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-lg">What is the final volume you need?</p>
-          <div className="grid w-full grid-cols-4 place-content-end gap-x-2">
-            <UserInput width="col-span-2" value={volume} setValue={setVolume} />
-            <span className="col-span-1 self-end">mL</span>
-          </div>
-        </div>
+        <QuestionBlock
+          question="What concentration do you need?"
+          value={finalConcentration}
+          setValue={setFinalConcentration}
+          unit={isUnits ? "units/mL" : "μg/mL"}
+        />
+
+        <QuestionBlock
+          question="What is the final volume you need?"
+          value={volume}
+          setValue={setVolume}
+          unit="mL"
+        />
       </div>
 
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 p-4 lg:px-16">
