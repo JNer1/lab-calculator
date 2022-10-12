@@ -10,7 +10,7 @@ const UserInput = (props: UserInputProps) => {
   const { value, setValue, width } = props;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const regex = /^[0-9\b]+$/;
+    const regex = /^[0-9.]+$/;
 
     if (e.target.value === "" || regex.test(e.target.value)) {
       setValue(e.target.value);
