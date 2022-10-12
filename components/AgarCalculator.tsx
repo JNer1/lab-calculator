@@ -43,14 +43,14 @@ const AgarCalculator = () => {
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">You should put this amount of powder:</p>
-          <div className="flex gap-2">
-            <div>
+          <div className="grid grid-cols-4 gap-x-2">
+            <div className="col-span-2">
               <input
                 readOnly
                 disabled
                 type="number"
                 value={massValue}
-                className="w-full rounded-sm bg-zinc-100 px-2 text-2xl font-semibold text-black"
+                className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
               />
             </div>
             <span>g</span>
