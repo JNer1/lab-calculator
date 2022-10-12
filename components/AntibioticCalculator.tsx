@@ -113,7 +113,7 @@ const AntibioticCalculator = () => {
         </div>
       </div>
 
-      <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 p-4 lg:px-16">
+      <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         {isLiquid && (
           <QuestionBlock
             question="What is your starting concentration?"
@@ -138,7 +138,7 @@ const AntibioticCalculator = () => {
         />
       </div>
 
-      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-zinc-800 p-4 lg:px-16">
+      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">You should put this amount of antibiotic:</p>
           <div className="grid grid-cols-4 gap-x-2">
