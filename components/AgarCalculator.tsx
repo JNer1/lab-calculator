@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import QuestionBlock from "./QuestionBlock";
-import UserInput from "./UserInput";
 
 const AgarCalculator = () => {
   const [recipeValue, setRecipeValue] = useState("0");

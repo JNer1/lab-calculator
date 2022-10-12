@@ -1,6 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import QuestionBlock from "./QuestionBlock";
-import UserInput from "./UserInput";
 
 const AntibioticCalculator = () => {
   const [initialConcentration, setInitialConcentration] = useState("0");
