@@ -1,5 +1,6 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEventHandler, useEffect, useState } from "react";
 import QuestionBlock from "./QuestionBlock";
+import ToggleButton from "./ToggleButton";
 
 const AntibioticCalculator = () => {
   const [initialConcentration, setInitialConcentration] = useState("0");
@@ -13,16 +14,30 @@ const AntibioticCalculator = () => {
   const [isUnits, setIsUnits] = useState(true);
   const [isMicro, setIsMicro] = useState(false);
 
-  const handleLiquidChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleLiquidChange = () => {
     if (isPowder) setIsPowder(false);
 
-    setIsLiquid(e.target.checked);
+    setIsLiquid(!isLiquid);
   };
 
-  const handlePowderChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleLiquidKeyDown: KeyboardEventHandler = (e) => {
+    if (e.key === "Enter") {
+      if (isPowder) setIsPowder(false);
+      setIsLiquid(!isLiquid);
+    }
+  };
+
+  const handlePowderChange = () => {
     if (isLiquid) setIsLiquid(false);
 
-    setIsPowder(e.target.checked);
+    setIsPowder(!isPowder);
+  };
+
+  const handlePowderKeyDown: KeyboardEventHandler = (e) => {
+    if (e.key === "Enter") {
+      if (isLiquid) setIsLiquid(false);
+      setIsPowder(!isPowder);
+    }
   };
 
   const handleUnitsChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,28 +76,23 @@ const AntibioticCalculator = () => {
       <h1 className="text-center text-3xl font-bold">Antibiotic Calculator</h1>
 
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <p className="">What state is your antibiotic?</p>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3">
-            <div className="flex gap-4">
-              <input
-                id="isLiquid"
-                type="checkbox"
-                checked={isLiquid}
-                onChange={handleLiquidChange}
-              />
-              <label htmlFor="isLiquid">Liquid</label>
-            </div>
-            <div className="flex gap-4">
-              <input
-                id="isPowder"
-                type="checkbox"
-                checked={isPowder}
-                onChange={handlePowderChange}
-              />
-              <label htmlFor="isPowder">Powder</label>
-            </div>
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+            <ToggleButton
+              label="Liquid"
+              onClick={handleLiquidChange}
+              onKeyDown={handleLiquidChange}
+              active={isLiquid}
+            />
+
+            <ToggleButton
+              label="Powder"
+              onClick={handlePowderChange}
+              onKeyDown={handlePowderKeyDown}
+              active={isPowder}
+            />
           </div>
         </div>
 
