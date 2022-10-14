@@ -83,7 +83,7 @@ const AntibioticCalculator = () => {
             <ToggleButton
               label="Liquid"
               onClick={handleLiquidChange}
-              onKeyDown={handleLiquidChange}
+              onKeyDown={handleLiquidKeyDown}
               active={isLiquid}
             />
 
