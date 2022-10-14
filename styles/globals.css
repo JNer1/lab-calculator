@@ -36,6 +36,6 @@ input[type="number"] {
   }
   body {
     color: white;
-    background: hsl(0, 0%, 9%);
+    background: hsl(255, 15%, 12%);
   }
 }
