@@ -36,19 +36,33 @@ const AntibioticCalculator = () => {
   const handlePowderKeyDown: KeyboardEventHandler = (e) => {
     if (e.key === "Enter") {
       if (isLiquid) setIsLiquid(false);
+
       setIsPowder(!isPowder);
     }
   };
 
-  const handleUnitsChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUnitsChange = () => {
     if (isMicro) setIsMicro(false);
 
-    setIsUnits(e.target.checked);
+    setIsUnits(!isUnits);
   };
-  const handleMicroChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+  const handleUnitsKeyDown: KeyboardEventHandler = (e) => {
+    if (isMicro) setIsMicro(false);
+
+    setIsUnits(!isUnits);
+  };
+
+  const handleMicroChange = () => {
     if (isUnits) setIsUnits(false);
 
-    setIsMicro(e.target.checked);
+    setIsMicro(!isMicro);
+  };
+
+  const handleMicroKeyDown: KeyboardEventHandler = (e) => {
+    if (isUnits) setIsUnits(false);
+
+    setIsUnits(!isUnits);
   };
 
   const liquidFormula = (ci: number, cf: number, v: number) => {
@@ -96,28 +110,23 @@ const AntibioticCalculator = () => {
           </div>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <p className="">What concentration units do you need?</p>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3">
-            <div className="flex gap-4">
-              <input
-                id="isUnits"
-                type="checkbox"
-                checked={isUnits}
-                onChange={handleUnitsChange}
-              />
-              <label htmlFor="isUnits">units/mL</label>
-            </div>
-            <div className="flex gap-4">
-              <input
-                id="isMicro"
-                type="checkbox"
-                checked={isMicro}
-                onChange={handleMicroChange}
-              />
-              <label htmlFor="isMicro">μg/mL</label>
-            </div>
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+            <ToggleButton
+              label="units/mL"
+              onClick={handleUnitsChange}
+              onKeyDown={handleUnitsKeyDown}
+              active={isUnits}
+            />
+
+            <ToggleButton
+              label="μg/mL"
+              onClick={handleMicroChange}
+              onKeyDown={handleMicroKeyDown}
+              active={isMicro}
+            />
           </div>
         </div>
       </div>
