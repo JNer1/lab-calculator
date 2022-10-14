@@ -76,6 +76,16 @@ const AntibioticCalculator = () => {
     return answer;
   };
 
+  const powderFormula = (c: number, v: number) => {
+    const mass = (c * v) / 1000;
+
+    if (!mass) {
+      return 0;
+    }
+
+    return mass;
+  };
+
   useEffect(() => {
     const ci = parseFloat(initialConcentration);
     const cf = parseFloat(finalConcentration) || 0;
@@ -84,7 +94,13 @@ const AntibioticCalculator = () => {
     if (isLiquid) {
       setAnswer(liquidFormula(ci, cf, v).toFixed(2).toString());
     }
-  }, [initialConcentration, finalConcentration, volume, isLiquid]);
+
+    if (isPowder) {
+      const c = parseFloat(finalConcentration) || 0;
+      const v = parseFloat(volume) || 0;
+      setAnswer(powderFormula(c, v).toFixed(2));
+    }
+  }, [initialConcentration, finalConcentration, volume, isLiquid, isPowder]);
 
   return (
     <div className="flex flex-col items-center gap-8">
