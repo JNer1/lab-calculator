@@ -14,7 +14,7 @@ const AntibioticCalculator = () => {
   const [isUnits, setIsUnits] = useState(true);
   const [isMicro, setIsMicro] = useState(false);
 
-  const handleLiquidChange = () => {
+  const toggleLiquid = () => {
     if (isPowder) setIsPowder(false);
 
     setIsLiquid(!isLiquid);
@@ -22,12 +22,11 @@ const AntibioticCalculator = () => {
 
   const handleLiquidKeyDown: KeyboardEventHandler = (e) => {
     if (e.key === "Enter") {
-      if (isPowder) setIsPowder(false);
-      setIsLiquid(!isLiquid);
+      toggleLiquid();
     }
   };
 
-  const handlePowderChange = () => {
+  const togglePowder = () => {
     if (isLiquid) setIsLiquid(false);
 
     setIsPowder(!isPowder);
@@ -35,34 +34,32 @@ const AntibioticCalculator = () => {
 
   const handlePowderKeyDown: KeyboardEventHandler = (e) => {
     if (e.key === "Enter") {
-      if (isLiquid) setIsLiquid(false);
-
-      setIsPowder(!isPowder);
+      togglePowder();
     }
   };
 
-  const handleUnitsChange = () => {
+  const toggleUnits = () => {
     if (isMicro) setIsMicro(false);
 
     setIsUnits(!isUnits);
   };
 
   const handleUnitsKeyDown: KeyboardEventHandler = (e) => {
-    if (isMicro) setIsMicro(false);
-
-    setIsUnits(!isUnits);
+    if (e.key === "Enter") {
+      toggleUnits();
+    }
   };
 
-  const handleMicroChange = () => {
+  const toggleMicro = () => {
     if (isUnits) setIsUnits(false);
 
     setIsMicro(!isMicro);
   };
 
   const handleMicroKeyDown: KeyboardEventHandler = (e) => {
-    if (isUnits) setIsUnits(false);
-
-    setIsUnits(!isUnits);
+    if (e.key === "Enter") {
+      toggleMicro();
+    }
   };
 
   const liquidFormula = (ci: number, cf: number, v: number) => {
@@ -96,14 +93,14 @@ const AntibioticCalculator = () => {
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
             <ToggleButton
               label="Liquid"
-              onClick={handleLiquidChange}
+              onClick={toggleLiquid}
               onKeyDown={handleLiquidKeyDown}
               active={isLiquid}
             />
 
             <ToggleButton
               label="Powder"
-              onClick={handlePowderChange}
+              onClick={togglePowder}
               onKeyDown={handlePowderKeyDown}
               active={isPowder}
             />
@@ -116,14 +113,14 @@ const AntibioticCalculator = () => {
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
             <ToggleButton
               label="units/mL"
-              onClick={handleUnitsChange}
+              onClick={toggleUnits}
               onKeyDown={handleUnitsKeyDown}
               active={isUnits}
             />
 
             <ToggleButton
               label="μg/mL"
-              onClick={handleMicroChange}
+              onClick={toggleMicro}
               onKeyDown={handleMicroKeyDown}
               active={isMicro}
             />
