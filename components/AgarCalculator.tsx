@@ -4,20 +4,11 @@ import QuestionBlock from "./QuestionBlock";
 const AgarCalculator = () => {
   const [recipeValue, setRecipeValue] = useState("0");
   const [volumeValue, setVolumeValue] = useState("0");
-  const [massValue, setMassValue] = useState("0");
 
-  useEffect(() => {
-    const concentration = parseFloat(recipeValue) || 0;
-    const finalvol = parseFloat(volumeValue) || 0;
-
-    const getMassFormula = (concentration * finalvol) / 1000;
-
-    const getMassValue = () => {
-      setMassValue(getMassFormula.toFixed(2).toString());
-    };
-
-    getMassValue();
-  }, [recipeValue, volumeValue]);
+  const concentration = parseFloat(recipeValue) || 0;
+  const finalvol = parseFloat(volumeValue) || 0;
+  const mass = (concentration * finalvol) / 1000;
+  const answer = mass.toFixed(2);
 
   return (
     <div className="flex flex-col items-center gap-8">
@@ -48,7 +39,7 @@ const AgarCalculator = () => {
                 readOnly
                 disabled
                 type="number"
-                value={massValue}
+                value={answer}
                 className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
               />
             </div>
