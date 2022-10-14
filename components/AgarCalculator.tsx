@@ -38,7 +38,7 @@ const AgarCalculator = () => {
               <input
                 readOnly
                 disabled
-                type="number"
+                type="text"
                 value={answer}
                 className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
               />

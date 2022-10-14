@@ -191,7 +191,7 @@ const AntibioticCalculator = () => {
             <div className="col-span-2">
               <input
                 readOnly
-                type="number"
+                type="text"
                 value={answer}
                 className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black disabled:bg-zinc-400"
                 disabled={!isValid}
