@@ -14,6 +14,10 @@ const AntibioticCalculator = () => {
   const [isUnits, setIsUnits] = useState(true);
   const [isMicro, setIsMicro] = useState(false);
 
+  const hasChosenState = isLiquid || isPowder;
+  const hasChosenUnits = isUnits || isMicro;
+  const isValid = hasChosenState && hasChosenUnits;
+
   const toggleLiquid = () => {
     if (isPowder) setIsPowder(false);
 
@@ -128,6 +132,14 @@ const AntibioticCalculator = () => {
         </div>
       </div>
 
+      <p
+        className={`${
+          isValid ? "-my-4 h-0 opacity-0" : ""
+        } text-center text-lg text-red-400 transition-all ease-in-out`}
+      >
+        Please select an option for all questions
+      </p>
+
       <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         {isLiquid && (
           <QuestionBlock
@@ -135,6 +147,7 @@ const AntibioticCalculator = () => {
             value={initialConcentration}
             setValue={setInitialConcentration}
             unit={isUnits ? "units/mL" : "μg/mL"}
+            disabled={!isValid}
           />
         )}
 
@@ -143,6 +156,7 @@ const AntibioticCalculator = () => {
           value={finalConcentration}
           setValue={setFinalConcentration}
           unit={isUnits ? "units/mL" : "μg/mL"}
+          disabled={!isValid}
         />
 
         <QuestionBlock
@@ -150,6 +164,7 @@ const AntibioticCalculator = () => {
           value={volume}
           setValue={setVolume}
           unit="mL"
+          disabled={!isValid}
         />
       </div>
 
@@ -160,10 +175,10 @@ const AntibioticCalculator = () => {
             <div className="col-span-2">
               <input
                 readOnly
-                disabled
                 type="number"
                 value={answer}
-                className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
+                className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black disabled:bg-zinc-400"
+                disabled={!isValid}
               />
             </div>
             <span className="col-span-1 self-end">
