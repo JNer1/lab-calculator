@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEventHandler, useEffect, useState } from "react";
+import { KeyboardEventHandler, useEffect, useState } from "react";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
 
