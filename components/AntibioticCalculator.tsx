@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEventHandler, useEffect, useState } from "react";
+import { KeyboardEventHandler, useEffect, useState } from "react";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
 
@@ -108,7 +108,7 @@ const AntibioticCalculator = () => {
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <p className="">What state is your antibiotic?</p>
+          <p className="">What form is your antibiotic?</p>
 
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
             <ToggleButton
