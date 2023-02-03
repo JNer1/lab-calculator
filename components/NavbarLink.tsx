@@ -19,14 +19,13 @@ const NavbarLink = (props: NavBarLinkProps) => {
 
   return (
     <li>
-      <Link href={href}>
-        <a
-          className={`${
-            isActive ? "text-teal-200 underline underline-offset-4" : ""
-          } hover:text-teal-200`}
-        >
-          {label}
-        </a>
+      <Link
+        href={href}
+        className={`${
+          isActive ? "text-teal-200 underline underline-offset-4" : ""
+        } hover:text-teal-200`}
+      >
+        {label}
       </Link>
     </li>
   );
