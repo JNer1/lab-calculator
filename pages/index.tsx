@@ -1,7 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import AgarCalculator from "../components/AgarCalculator";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
