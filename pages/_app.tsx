@@ -6,9 +6,9 @@ const notoSansMono = Noto_Sans_Mono({ subsets: ["latin", "greek"] });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={notoSansMono.className}>
+    <div className={notoSansMono.className}>
       <Component {...pageProps} />
-    </main>
+    </div>
   );
 }
 
