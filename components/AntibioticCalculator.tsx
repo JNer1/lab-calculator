@@ -33,7 +33,7 @@ const AntibioticCalculator = () => {
     return mass;
   };
 
-  const getAnswer = () => {
+  const getAnswer = (): string => {
     if (isLiquid) {
       const ci = parseFloat(initialConcentration);
       const cf = parseFloat(finalConcentration) || 0;
@@ -54,6 +54,8 @@ const AntibioticCalculator = () => {
 
       return powderFormula(c, v).toFixed(2);
     }
+
+    return "0";
   };
 
   const hasChosenState = isLiquid || isPowder;
