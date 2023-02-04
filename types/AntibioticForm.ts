@@ -1,0 +1,1 @@
+export type AntibioticForm = "powder" | "liquid"

@@ -1,4 +1,5 @@
 import { KeyboardEventHandler, useEffect, useState } from "react";
+import { AntibioticForm } from "../types/AntibioticForm";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
 
@@ -7,8 +8,8 @@ const AntibioticCalculator = () => {
   const [finalConcentration, setFinalConcentration] = useState("0");
   const [volume, setVolume] = useState("0");
 
-  const [isLiquid, setIsLiquid] = useState(true);
-  const [isPowder, setIsPowder] = useState(false);
+  const [antibioticForm, setAntibioticForm] =
+    useState<AntibioticForm>("liquid");
 
   const [isUnits, setIsUnits] = useState(true);
   const [isMicro, setIsMicro] = useState(false);
@@ -34,7 +35,7 @@ const AntibioticCalculator = () => {
   };
 
   const getAnswer = (): string => {
-    if (isLiquid) {
+    if (antibioticForm === "liquid") {
       const ci = parseFloat(initialConcentration);
       const cf = parseFloat(finalConcentration) || 0;
       const v = parseFloat(volume) || 0;
@@ -48,7 +49,7 @@ const AntibioticCalculator = () => {
       return answer.toFixed(2);
     }
 
-    if (isPowder) {
+    if (antibioticForm === "powder") {
       const c = parseFloat(finalConcentration) || 0;
       const v = parseFloat(volume) || 0;
 
@@ -58,20 +59,15 @@ const AntibioticCalculator = () => {
     return "0";
   };
 
-  const hasChosenState = isLiquid || isPowder;
   const hasChosenUnits = isUnits || isMicro;
-  const isValid = hasChosenState && hasChosenUnits;
+  const isValid = hasChosenUnits;
 
   const toggleLiquid = () => {
-    if (isPowder) setIsPowder(false);
-
-    setIsLiquid(!isLiquid);
+    setAntibioticForm("liquid");
   };
 
   const togglePowder = () => {
-    if (isLiquid) setIsLiquid(false);
-
-    setIsPowder(!isPowder);
+    setAntibioticForm("powder");
   };
 
   const toggleUnits = () => {
@@ -98,13 +94,13 @@ const AntibioticCalculator = () => {
             <ToggleButton
               label="Liquid"
               onClick={toggleLiquid}
-              active={isLiquid}
+              active={antibioticForm === "liquid"}
             />
 
             <ToggleButton
               label="Powder"
               onClick={togglePowder}
-              active={isPowder}
+              active={antibioticForm === "powder"}
             />
           </div>
         </div>
@@ -137,7 +133,7 @@ const AntibioticCalculator = () => {
       </p>
 
       <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
-        {isLiquid && (
+        {antibioticForm === "liquid" && (
           <QuestionBlock
             id="starting-conc"
             question="What is your starting concentration?"
@@ -183,7 +179,7 @@ const AntibioticCalculator = () => {
             </div>
 
             <span className="col-span-1 self-end">
-              {isLiquid ? "mL" : "mg"}
+              {antibioticForm === "liquid" ? "mL" : "mg"}
             </span>
           </div>
         </div>
