@@ -1,5 +1,6 @@
 import { KeyboardEventHandler, useEffect, useState } from "react";
 import { AntibioticForm } from "../types/AntibioticForm";
+import { AntibioticUnit } from "../types/AntibioticUnits";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
 
@@ -11,8 +12,7 @@ const AntibioticCalculator = () => {
   const [antibioticForm, setAntibioticForm] =
     useState<AntibioticForm>("liquid");
 
-  const [isUnits, setIsUnits] = useState(true);
-  const [isMicro, setIsMicro] = useState(false);
+  const [antibioticUnit, setAntibioticUnit] = useState<AntibioticUnit>("units");
 
   const liquidFormula = (ci: number, cf: number, v: number): number => {
     const answer = (cf * v) / ci;
@@ -59,7 +59,6 @@ const AntibioticCalculator = () => {
     return "0";
   };
 
-  const hasChosenUnits = isUnits || isMicro;
   const isValid = hasChosenUnits;
 
   const toggleLiquid = () => {
@@ -71,15 +70,11 @@ const AntibioticCalculator = () => {
   };
 
   const toggleUnits = () => {
-    if (isMicro) setIsMicro(false);
-
-    setIsUnits(!isUnits);
+    setAntibioticUnit("units");
   };
 
   const toggleMicro = () => {
-    if (isUnits) setIsUnits(false);
-
-    setIsMicro(!isMicro);
+    setAntibioticUnit("micro");
   };
 
   return (
@@ -112,13 +107,13 @@ const AntibioticCalculator = () => {
             <ToggleButton
               label="units/mL"
               onClick={toggleUnits}
-              active={isUnits}
+              active={antibioticUnit === "units"}
             />
 
             <ToggleButton
               label="μg/mL"
               onClick={toggleMicro}
-              active={isMicro}
+              active={antibioticUnit === "micro"}
             />
           </div>
         </div>
@@ -139,7 +134,7 @@ const AntibioticCalculator = () => {
             question="What is your starting concentration?"
             value={initialConcentration}
             setValue={setInitialConcentration}
-            unit={isUnits ? "units/mL" : "μg/mL"}
+            unit={antibioticUnit === "units" ? "units/mL" : "μg/mL"}
             disabled={!isValid}
           />
         )}
@@ -149,7 +144,7 @@ const AntibioticCalculator = () => {
           question="What concentration do you need?"
           value={finalConcentration}
           setValue={setFinalConcentration}
-          unit={isUnits ? "units/mL" : "μg/mL"}
+          unit={antibioticUnit === "units" ? "units/mL" : "μg/mL"}
           disabled={!isValid}
         />
 
