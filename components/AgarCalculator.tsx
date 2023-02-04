@@ -16,6 +16,7 @@ const AgarCalculator = () => {
 
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         <QuestionBlock
+          id="agar-recipe"
           question="What is the agar recipe?"
           value={recipeValue}
           setValue={setRecipeValue}
@@ -23,6 +24,7 @@ const AgarCalculator = () => {
         />
 
         <QuestionBlock
+          id="final-vol"
           question="What is the final volume you need?"
           value={volumeValue}
           setValue={setVolumeValue}
@@ -33,6 +35,7 @@ const AgarCalculator = () => {
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">You should put this amount of powder:</p>
+
           <div className="grid grid-cols-4 gap-x-2">
             <div className="col-span-2">
               <input
@@ -43,6 +46,7 @@ const AgarCalculator = () => {
                 className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
               />
             </div>
+
             <span>g</span>
           </div>
         </div>
