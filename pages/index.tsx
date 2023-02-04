@@ -1,14 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import AgarCalculator from "../components/AgarCalculator";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
-    <div className="mx-auto max-w-5xl">
+    <>
       <Head>
         <title>Lab Calculator</title>
         <meta
@@ -20,6 +18,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Navbar />
+
       <main
         id="main-content"
         className="flex min-h-screen w-full flex-col items-center justify-start p-4 lg:p-8"
@@ -30,7 +29,7 @@ const Home: NextPage = () => {
       <footer className={styles.footer}>
         <p>Because we all forget how to compute</p>
       </footer>
-    </div>
+    </>
   );
 };
 
