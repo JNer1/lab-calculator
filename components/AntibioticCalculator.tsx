@@ -190,16 +190,18 @@ const AntibioticCalculator = () => {
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         <div className="flex flex-col gap-2">
           <p className="text-lg">You should put this amount of antibiotic:</p>
+
           <div className="grid grid-cols-4 gap-x-2">
             <div className="col-span-2">
               <input
+                disabled
                 readOnly
                 type="text"
                 value={answer}
-                className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black disabled:bg-zinc-400"
-                disabled={!isValid}
+                className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
               />
             </div>
+
             <span className="col-span-1 self-end">
               {isLiquid ? "mL" : "mg"}
             </span>
