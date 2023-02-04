@@ -66,22 +66,10 @@ const AntibioticCalculator = () => {
     setIsLiquid(!isLiquid);
   };
 
-  const handleLiquidKeyDown: KeyboardEventHandler = (e) => {
-    if (e.key === "Enter") {
-      toggleLiquid();
-    }
-  };
-
   const togglePowder = () => {
     if (isLiquid) setIsLiquid(false);
 
     setIsPowder(!isPowder);
-  };
-
-  const handlePowderKeyDown: KeyboardEventHandler = (e) => {
-    if (e.key === "Enter") {
-      togglePowder();
-    }
   };
 
   const toggleUnits = () => {
@@ -90,22 +78,10 @@ const AntibioticCalculator = () => {
     setIsUnits(!isUnits);
   };
 
-  const handleUnitsKeyDown: KeyboardEventHandler = (e) => {
-    if (e.key === "Enter") {
-      toggleUnits();
-    }
-  };
-
   const toggleMicro = () => {
     if (isUnits) setIsUnits(false);
 
     setIsMicro(!isMicro);
-  };
-
-  const handleMicroKeyDown: KeyboardEventHandler = (e) => {
-    if (e.key === "Enter") {
-      toggleMicro();
-    }
   };
 
   return (
@@ -120,14 +96,12 @@ const AntibioticCalculator = () => {
             <ToggleButton
               label="Liquid"
               onClick={toggleLiquid}
-              onKeyDown={handleLiquidKeyDown}
               active={isLiquid}
             />
 
             <ToggleButton
               label="Powder"
               onClick={togglePowder}
-              onKeyDown={handlePowderKeyDown}
               active={isPowder}
             />
           </div>
@@ -140,14 +114,12 @@ const AntibioticCalculator = () => {
             <ToggleButton
               label="units/mL"
               onClick={toggleUnits}
-              onKeyDown={handleUnitsKeyDown}
               active={isUnits}
             />
 
             <ToggleButton
               label="μg/mL"
               onClick={toggleMicro}
-              onKeyDown={handleMicroKeyDown}
               active={isMicro}
             />
           </div>
