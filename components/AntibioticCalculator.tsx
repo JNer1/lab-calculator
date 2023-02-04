@@ -59,8 +59,6 @@ const AntibioticCalculator = () => {
     return "0";
   };
 
-  const isValid = hasChosenUnits;
-
   const toggleLiquid = () => {
     setAntibioticForm("liquid");
   };
@@ -119,14 +117,6 @@ const AntibioticCalculator = () => {
         </div>
       </div>
 
-      <p
-        className={`${
-          isValid ? "-my-4 h-0 opacity-0" : ""
-        } text-center text-lg text-red-400 transition-all ease-in-out`}
-      >
-        Please select an option for all questions
-      </p>
-
       <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         {antibioticForm === "liquid" && (
           <QuestionBlock
@@ -135,7 +125,6 @@ const AntibioticCalculator = () => {
             value={initialConcentration}
             setValue={setInitialConcentration}
             unit={antibioticUnit === "units" ? "units/mL" : "μg/mL"}
-            disabled={!isValid}
           />
         )}
 
@@ -145,7 +134,6 @@ const AntibioticCalculator = () => {
           value={finalConcentration}
           setValue={setFinalConcentration}
           unit={antibioticUnit === "units" ? "units/mL" : "μg/mL"}
-          disabled={!isValid}
         />
 
         <QuestionBlock
@@ -154,7 +142,6 @@ const AntibioticCalculator = () => {
           value={volume}
           setValue={setVolume}
           unit="mL"
-          disabled={!isValid}
         />
       </div>
 
