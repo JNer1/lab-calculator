@@ -1,6 +1,7 @@
 import { FocusEvent, SetStateAction, Dispatch, ChangeEvent } from "react";
 
 interface UserInputProps {
+  id: string;
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
   width?: string;
@@ -8,7 +9,7 @@ interface UserInputProps {
 }
 
 const UserInput = (props: UserInputProps) => {
-  const { value, setValue, width, disabled } = props;
+  const { id, value, setValue, width, disabled } = props;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const regex = /^[0-9.]+$/;
@@ -32,6 +33,7 @@ const UserInput = (props: UserInputProps) => {
 
   return (
     <input
+      id={id}
       type="text"
       value={value}
       onChange={handleChange}

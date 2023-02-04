@@ -159,6 +159,7 @@ const AntibioticCalculator = () => {
       <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         {isLiquid && (
           <QuestionBlock
+            id="starting-conc"
             question="What is your starting concentration?"
             value={initialConcentration}
             setValue={setInitialConcentration}
@@ -168,6 +169,7 @@ const AntibioticCalculator = () => {
         )}
 
         <QuestionBlock
+          id="final-conc"
           question="What concentration do you need?"
           value={finalConcentration}
           setValue={setFinalConcentration}
@@ -176,6 +178,7 @@ const AntibioticCalculator = () => {
         />
 
         <QuestionBlock
+          id="final-vol"
           question="What is the final volume you need?"
           value={volume}
           setValue={setVolume}
