@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import AgarCalculator from "../components/AgarCalculator";
 import Navbar from "../components/Navbar";
-import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -26,7 +25,7 @@ const Home: NextPage = () => {
         <AgarCalculator />
       </main>
 
-      <footer className={styles.footer}>
+      <footer className="border-t border-lilac-700 p-8 text-center">
         <p>Because we all forget how to compute</p>
       </footer>
     </>

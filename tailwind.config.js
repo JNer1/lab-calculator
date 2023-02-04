@@ -1,3 +1,5 @@
+const {fontFamily} = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -11,7 +13,7 @@ module.exports = {
         "lilac-900": "hsl(252, 14.71%, 13.33%)",
       },
       fontFamily: {
-        "noto-mono": ["Noto Sans Mono", "monospace"],
+       mono:["var(--font-noto-sans-mono)", ...fontFamily.mono]
       },
     },
   },

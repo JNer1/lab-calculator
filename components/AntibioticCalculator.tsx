@@ -1,4 +1,6 @@
 import { KeyboardEventHandler, useEffect, useState } from "react";
+import { AntibioticForm } from "../types/AntibioticForm";
+import { AntibioticUnit } from "../types/AntibioticUnits";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
 
@@ -7,11 +9,10 @@ const AntibioticCalculator = () => {
   const [finalConcentration, setFinalConcentration] = useState("0");
   const [volume, setVolume] = useState("0");
 
-  const [isLiquid, setIsLiquid] = useState(true);
-  const [isPowder, setIsPowder] = useState(false);
+  const [antibioticForm, setAntibioticForm] =
+    useState<AntibioticForm>("liquid");
 
-  const [isUnits, setIsUnits] = useState(true);
-  const [isMicro, setIsMicro] = useState(false);
+  const [antibioticUnit, setAntibioticUnit] = useState<AntibioticUnit>("units");
 
   const liquidFormula = (ci: number, cf: number, v: number): number => {
     const answer = (cf * v) / ci;
@@ -34,7 +35,7 @@ const AntibioticCalculator = () => {
   };
 
   const getAnswer = (): string => {
-    if (isLiquid) {
+    if (antibioticForm === "liquid") {
       const ci = parseFloat(initialConcentration);
       const cf = parseFloat(finalConcentration) || 0;
       const v = parseFloat(volume) || 0;
@@ -48,7 +49,7 @@ const AntibioticCalculator = () => {
       return answer.toFixed(2);
     }
 
-    if (isPowder) {
+    if (antibioticForm === "powder") {
       const c = parseFloat(finalConcentration) || 0;
       const v = parseFloat(volume) || 0;
 
@@ -58,32 +59,20 @@ const AntibioticCalculator = () => {
     return "0";
   };
 
-  const hasChosenState = isLiquid || isPowder;
-  const hasChosenUnits = isUnits || isMicro;
-  const isValid = hasChosenState && hasChosenUnits;
-
   const toggleLiquid = () => {
-    if (isPowder) setIsPowder(false);
-
-    setIsLiquid(!isLiquid);
+    setAntibioticForm("liquid");
   };
 
   const togglePowder = () => {
-    if (isLiquid) setIsLiquid(false);
-
-    setIsPowder(!isPowder);
+    setAntibioticForm("powder");
   };
 
   const toggleUnits = () => {
-    if (isMicro) setIsMicro(false);
-
-    setIsUnits(!isUnits);
+    setAntibioticUnit("units");
   };
 
   const toggleMicro = () => {
-    if (isUnits) setIsUnits(false);
-
-    setIsMicro(!isMicro);
+    setAntibioticUnit("micro");
   };
 
   return (
@@ -98,13 +87,13 @@ const AntibioticCalculator = () => {
             <ToggleButton
               label="Liquid"
               onClick={toggleLiquid}
-              active={isLiquid}
+              active={antibioticForm === "liquid"}
             />
 
             <ToggleButton
               label="Powder"
               onClick={togglePowder}
-              active={isPowder}
+              active={antibioticForm === "powder"}
             />
           </div>
         </div>
@@ -116,35 +105,26 @@ const AntibioticCalculator = () => {
             <ToggleButton
               label="units/mL"
               onClick={toggleUnits}
-              active={isUnits}
+              active={antibioticUnit === "units"}
             />
 
             <ToggleButton
               label="μg/mL"
               onClick={toggleMicro}
-              active={isMicro}
+              active={antibioticUnit === "micro"}
             />
           </div>
         </div>
       </div>
 
-      <p
-        className={`${
-          isValid ? "-my-4 h-0 opacity-0" : ""
-        } text-center text-lg text-red-400 transition-all ease-in-out`}
-      >
-        Please select an option for all questions
-      </p>
-
       <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
-        {isLiquid && (
+        {antibioticForm === "liquid" && (
           <QuestionBlock
             id="starting-conc"
             question="What is your starting concentration?"
             value={initialConcentration}
             setValue={setInitialConcentration}
-            unit={isUnits ? "units/mL" : "μg/mL"}
-            disabled={!isValid}
+            unit={antibioticUnit === "units" ? "units/mL" : "μg/mL"}
           />
         )}
 
@@ -153,8 +133,7 @@ const AntibioticCalculator = () => {
           question="What concentration do you need?"
           value={finalConcentration}
           setValue={setFinalConcentration}
-          unit={isUnits ? "units/mL" : "μg/mL"}
-          disabled={!isValid}
+          unit={antibioticUnit === "units" ? "units/mL" : "μg/mL"}
         />
 
         <QuestionBlock
@@ -163,7 +142,6 @@ const AntibioticCalculator = () => {
           value={volume}
           setValue={setVolume}
           unit="mL"
-          disabled={!isValid}
         />
       </div>
 
@@ -183,7 +161,7 @@ const AntibioticCalculator = () => {
             </div>
 
             <span className="col-span-1 self-end">
-              {isLiquid ? "mL" : "mg"}
+              {antibioticForm === "liquid" ? "mL" : "mg"}
             </span>
           </div>
         </div>
