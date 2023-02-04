@@ -6,13 +6,55 @@ const AntibioticCalculator = () => {
   const [initialConcentration, setInitialConcentration] = useState("0");
   const [finalConcentration, setFinalConcentration] = useState("0");
   const [volume, setVolume] = useState("0");
-  const [answer, setAnswer] = useState("0");
 
   const [isLiquid, setIsLiquid] = useState(true);
   const [isPowder, setIsPowder] = useState(false);
 
   const [isUnits, setIsUnits] = useState(true);
   const [isMicro, setIsMicro] = useState(false);
+
+  const liquidFormula = (ci: number, cf: number, v: number) => {
+    const answer = (cf * v) / ci;
+
+    if (!answer) {
+      return 0;
+    }
+
+    return answer;
+  };
+
+  const powderFormula = (c: number, v: number) => {
+    const mass = (c * v) / 1000;
+
+    if (!mass) {
+      return 0;
+    }
+
+    return mass;
+  };
+
+  const getAnswer = () => {
+    if (isLiquid) {
+      const ci = parseFloat(initialConcentration);
+      const cf = parseFloat(finalConcentration) || 0;
+      const v = parseFloat(volume) || 0;
+
+      const answer = liquidFormula(ci, cf, v);
+
+      if (answer === Infinity) {
+        return "0";
+      }
+
+      return answer.toFixed(2);
+    }
+
+    if (isPowder) {
+      const c = parseFloat(finalConcentration) || 0;
+      const v = parseFloat(volume) || 0;
+
+      return powderFormula(c, v).toFixed(2);
+    }
+  };
 
   const hasChosenState = isLiquid || isPowder;
   const hasChosenUnits = isUnits || isMicro;
@@ -65,42 +107,6 @@ const AntibioticCalculator = () => {
       toggleMicro();
     }
   };
-
-  const liquidFormula = (ci: number, cf: number, v: number) => {
-    const answer = (cf * v) / ci;
-
-    if (!answer) {
-      return 0;
-    }
-
-    return answer;
-  };
-
-  const powderFormula = (c: number, v: number) => {
-    const mass = (c * v) / 1000;
-
-    if (!mass) {
-      return 0;
-    }
-
-    return mass;
-  };
-
-  useEffect(() => {
-    const ci = parseFloat(initialConcentration);
-    const cf = parseFloat(finalConcentration) || 0;
-    const v = parseFloat(volume) || 0;
-
-    if (isLiquid) {
-      setAnswer(liquidFormula(ci, cf, v).toFixed(2).toString());
-    }
-
-    if (isPowder) {
-      const c = parseFloat(finalConcentration) || 0;
-      const v = parseFloat(volume) || 0;
-      setAnswer(powderFormula(c, v).toFixed(2));
-    }
-  }, [initialConcentration, finalConcentration, volume, isLiquid, isPowder]);
 
   return (
     <div className="flex flex-col items-center gap-8">
@@ -197,7 +203,7 @@ const AntibioticCalculator = () => {
                 disabled
                 readOnly
                 type="text"
-                value={answer}
+                value={getAnswer()}
                 className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
               />
             </div>
