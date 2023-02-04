@@ -25,7 +25,7 @@ const Antibiotic: NextPage = () => {
         <AntibioticCalculator />
       </main>
 
-      <footer className={styles.footer}>
+      <footer className="border-t border-lilac-700 p-8 text-center">
         <p>Because we all forget how to compute</p>
       </footer>
     </div>
