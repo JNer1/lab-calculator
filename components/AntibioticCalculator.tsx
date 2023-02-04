@@ -13,7 +13,7 @@ const AntibioticCalculator = () => {
   const [isUnits, setIsUnits] = useState(true);
   const [isMicro, setIsMicro] = useState(false);
 
-  const liquidFormula = (ci: number, cf: number, v: number) => {
+  const liquidFormula = (ci: number, cf: number, v: number): number => {
     const answer = (cf * v) / ci;
 
     if (!answer) {
@@ -23,7 +23,7 @@ const AntibioticCalculator = () => {
     return answer;
   };
 
-  const powderFormula = (c: number, v: number) => {
+  const powderFormula = (c: number, v: number): number => {
     const mass = (c * v) / 1000;
 
     if (!mass) {
