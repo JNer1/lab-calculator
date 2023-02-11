@@ -16,6 +16,19 @@ const AgarCalculator = () => {
   const mass = (concentration * finalvol) / 1000;
   const answer = mass.toFixed(2);
 
+  const getAgarAmount = () => {
+    const vol = parseFloat(volumeValue);
+    const percent = 0.015;
+
+    const agarAmount = vol * percent;
+
+    if (isNaN(agarAmount)) {
+      return 0;
+    }
+
+    return agarAmount;
+  };
+
   const toggleYes = () => {
     setWithAgar(true);
   };
@@ -97,7 +110,7 @@ const AgarCalculator = () => {
                   readOnly
                   disabled
                   type="text"
-                  value={answer}
+                  value={getAgarAmount().toFixed(2)}
                   className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
                 />
               </div>
