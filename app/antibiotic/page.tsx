@@ -1,8 +1,9 @@
+"use client";
+
 import type { NextPage } from "next";
 import Head from "next/head";
-import AntibioticCalculator from "../components/AntibioticCalculator";
-import styles from "../styles/Home.module.css";
-import Navbar from "../components/Navbar";
+import AntibioticCalculator from "../../components/AntibioticCalculator";
+import Navbar from "../../components/Navbar";
 
 const Antibiotic: NextPage = () => {
   return (
