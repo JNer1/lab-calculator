@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import QuestionBlock from "./QuestionBlock";
+import ToggleButton from "./ToggleButton";
 
 const AgarCalculator = () => {
+  const [withAgar, setWithAgar] = useState(false);
+
   const [recipeValue, setRecipeValue] = useState("0");
   const [volumeValue, setVolumeValue] = useState("0");
 
@@ -10,9 +13,34 @@ const AgarCalculator = () => {
   const mass = (concentration * finalvol) / 1000;
   const answer = mass.toFixed(2);
 
+  const toggleYes = () => {
+    setWithAgar(true);
+  };
+  const toggleNo = () => {
+    setWithAgar(false);
+  };
+
   return (
     <div className="flex flex-col items-center gap-8">
       <h1 className="text-center text-3xl font-bold">Lab Calculator</h1>
+
+      <div className="flex flex-col gap-2">
+        <p className="">Will you be adding agar powder?</p>
+
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-2">
+          <ToggleButton
+            label="Yes"
+            onClick={toggleYes}
+            active={withAgar === true}
+          />
+
+          <ToggleButton
+            label="No"
+            onClick={toggleNo}
+            active={withAgar === false}
+          />
+        </div>
+      </div>
 
       <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
         <QuestionBlock
