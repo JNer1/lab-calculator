@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const AgarCalculator = () => {
   const [withAgar, setWithAgar] = useState(false);
 
   const [recipeValue, setRecipeValue] = useState("0");
   const [volumeValue, setVolumeValue] = useState("0");
+
+  const [parent, enable] = useAutoAnimate();
 
   const concentration = parseFloat(recipeValue) || 0;
   const finalvol = parseFloat(volumeValue) || 0;
@@ -60,7 +63,10 @@ const AgarCalculator = () => {
         />
       </div>
 
-      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
+      <div
+        ref={parent}
+        className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16"
+      >
         <div className="flex flex-col gap-2">
           <p className="text-lg">You should put this amount of powder:</p>
 
@@ -78,6 +84,28 @@ const AgarCalculator = () => {
             <span>g</span>
           </div>
         </div>
+
+        {withAgar && (
+          <div className="flex flex-col gap-2">
+            <p className="text-lg">
+              You should put this amount of agar powder (1.5%):
+            </p>
+
+            <div className="grid grid-cols-4 gap-x-2">
+              <div className="col-span-2">
+                <input
+                  readOnly
+                  disabled
+                  type="text"
+                  value={answer}
+                  className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
+                />
+              </div>
+
+              <span>g</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
