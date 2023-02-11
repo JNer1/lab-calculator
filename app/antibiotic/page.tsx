@@ -1,11 +1,10 @@
 "use client";
 
-import type { NextPage } from "next";
 import Head from "next/head";
 import AntibioticCalculator from "../../components/AntibioticCalculator";
 import Navbar from "../../components/Navbar";
 
-const Antibiotic: NextPage = () => {
+const Antibiotic = () => {
   return (
     <div>
       <Head>
