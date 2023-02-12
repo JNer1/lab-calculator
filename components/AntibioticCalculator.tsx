@@ -1,3 +1,4 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { KeyboardEventHandler, useEffect, useState } from "react";
 import { AntibioticForm } from "../types/AntibioticForm";
 import { AntibioticUnit } from "../types/AntibioticUnits";
@@ -13,6 +14,8 @@ const AntibioticCalculator = () => {
     useState<AntibioticForm>("liquid");
 
   const [antibioticUnit, setAntibioticUnit] = useState<AntibioticUnit>("units");
+
+  const [parent, enable] = useAutoAnimate();
 
   const liquidFormula = (ci: number, cf: number, v: number): number => {
     const answer = (cf * v) / ci;
@@ -117,7 +120,10 @@ const AntibioticCalculator = () => {
         </div>
       </div>
 
-      <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
+      <div
+        ref={parent}
+        className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16"
+      >
         {antibioticForm === "liquid" && (
           <QuestionBlock
             id="starting-conc"
