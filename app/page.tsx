@@ -1,6 +1,5 @@
 "use client";
 
-import Head from "next/head";
 import AgarCalculator from "../components/AgarCalculator";
 import Navbar from "../components/Navbar";
 
