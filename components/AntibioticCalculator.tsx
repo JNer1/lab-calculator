@@ -1,4 +1,5 @@
-import { KeyboardEventHandler, useEffect, useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useState } from "react";
 import { AntibioticForm } from "../types/AntibioticForm";
 import { AntibioticUnit } from "../types/AntibioticUnits";
 import QuestionBlock from "./QuestionBlock";
@@ -13,6 +14,8 @@ const AntibioticCalculator = () => {
     useState<AntibioticForm>("liquid");
 
   const [antibioticUnit, setAntibioticUnit] = useState<AntibioticUnit>("units");
+
+  const [parent, enable] = useAutoAnimate();
 
   const liquidFormula = (ci: number, cf: number, v: number): number => {
     const answer = (cf * v) / ci;
@@ -83,7 +86,7 @@ const AntibioticCalculator = () => {
         <div className="flex flex-col gap-2">
           <p className="">What form is your antibiotic?</p>
 
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4">
             <ToggleButton
               label="Liquid"
               onClick={toggleLiquid}
@@ -101,7 +104,7 @@ const AntibioticCalculator = () => {
         <div className="flex flex-col gap-2">
           <p className="">What concentration units do you need?</p>
 
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4">
             <ToggleButton
               label="units/mL"
               onClick={toggleUnits}
@@ -117,7 +120,10 @@ const AntibioticCalculator = () => {
         </div>
       </div>
 
-      <div className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
+      <div
+        ref={parent}
+        className="flex max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16"
+      >
         {antibioticForm === "liquid" && (
           <QuestionBlock
             id="starting-conc"

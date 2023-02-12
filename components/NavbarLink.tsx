@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface NavBarLinkProps {
   href: string;
@@ -9,13 +8,10 @@ interface NavBarLinkProps {
 
 const NavbarLink = (props: NavBarLinkProps) => {
   const { href, label } = props;
-  const [isActive, setIsActive] = useState(false);
 
-  const router = useRouter();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    if (router.pathname === href) setIsActive(true);
-  }, [href, router.pathname]);
+  const isActive = pathname === href;
 
   return (
     <li>
