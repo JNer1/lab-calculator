@@ -81,7 +81,7 @@ const AgarCalculator = () => {
         className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16"
       >
         <div className="flex flex-col gap-2">
-          <p className="text-lg">You should put this amount of powder:</p>
+          <p className="text-lg">Add this much of your medium:</p>
 
           <div className="grid grid-cols-4 gap-x-2">
             <div className="col-span-2">
@@ -100,9 +100,7 @@ const AgarCalculator = () => {
 
         {withAgar && (
           <div className="flex flex-col gap-2">
-            <p className="text-lg">
-              You should put this amount of agar powder (1.5%):
-            </p>
+            <p className="text-lg">Add this much agar (1.5%):</p>
 
             <div className="grid grid-cols-4 gap-x-2">
               <div className="col-span-2">
