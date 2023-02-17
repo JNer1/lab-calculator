@@ -4,6 +4,7 @@ import "../styles/globals.css";
 const notoSansMono = Noto_Sans_Mono({
   subsets: ["latin", "greek"],
   variable: "--font-noto-sans-mono",
+  display: "swap",
 });
 
 export default function RootLayout({
