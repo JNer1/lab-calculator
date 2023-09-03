@@ -1,4 +1,4 @@
-import { Noto_Sans_Mono } from "@next/font/google";
+import { Noto_Sans_Mono } from "next/font/google";
 import "../styles/globals.css";
 
 const notoSansMono = Noto_Sans_Mono({
