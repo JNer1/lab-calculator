@@ -37,7 +37,7 @@ const UserInput = (props: UserInputProps) => {
       type="text"
       value={value}
       onChange={handleChange}
-      // onFocus={handleFocus}
+      onFocus={handleFocus}
       onBlur={handleBlur}
       className={`${
         width ? width : "w-full"
