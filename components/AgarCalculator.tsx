@@ -9,6 +9,7 @@ const AgarCalculator = () => {
 
   const [recipeValue, setRecipeValue] = useState("0");
   const [volumeValue, setVolumeValue] = useState("0");
+  const [agarPercentValue, setAgarPercentValue] = useState("1.5");
 
   const [parent] = useAutoAnimate();
 
@@ -42,9 +43,15 @@ const AgarCalculator = () => {
         return new Decimal(0);
       }
     };
-    const percent = 0.015;
+    const percent = () => {
+      try {
+        return new Decimal(agarPercentValue).dividedBy(100);
+      } catch (err) {
+        return new Decimal(0);
+      }
+    };
 
-    const agarAmount = vol().times(percent);
+    const agarAmount = vol().times(percent());
 
     return agarAmount;
   };
@@ -78,7 +85,10 @@ const AgarCalculator = () => {
         </div>
       </div>
 
-      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
+      <div
+        ref={parent}
+        className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16"
+      >
         <QuestionBlock
           id="agar-recipe"
           question="What is the agar recipe?"
@@ -94,6 +104,16 @@ const AgarCalculator = () => {
           setValue={setVolumeValue}
           unit="mL"
         />
+
+        {withAgar && (
+          <QuestionBlock
+            id="agar-percentage"
+            question="What perecent agar do you need?"
+            value={agarPercentValue}
+            setValue={setAgarPercentValue}
+            unit="%"
+          />
+        )}
       </div>
 
       <div
@@ -120,7 +140,7 @@ const AgarCalculator = () => {
 
         {withAgar && (
           <div className="flex flex-col gap-2">
-            <p className="text-lg">Add this much agar (1.5%):</p>
+            <p className="text-lg">Add this much agar</p>
 
             <div className="grid grid-cols-4 gap-x-2">
               <div className="col-span-2">
