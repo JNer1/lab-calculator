@@ -2,6 +2,7 @@ import { useState } from "react";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import Decimal from "decimal.js";
 
 const AgarCalculator = () => {
   const [withAgar, setWithAgar] = useState(false);
@@ -9,22 +10,41 @@ const AgarCalculator = () => {
   const [recipeValue, setRecipeValue] = useState("0");
   const [volumeValue, setVolumeValue] = useState("0");
 
-  const [parent, enable] = useAutoAnimate();
+  const [parent] = useAutoAnimate();
 
-  const concentration = parseFloat(recipeValue) || 0;
-  const finalvol = parseFloat(volumeValue) || 0;
-  const mass = (concentration * finalvol) / 1000;
-  const answer = mass.toFixed(2);
+  const getMass = () => {
+    const concentration = () => {
+      try {
+        return new Decimal(recipeValue);
+      } catch (err) {
+        return new Decimal(0);
+      }
+    };
+
+    const finalvol = () => {
+      try {
+        return new Decimal(volumeValue);
+      } catch (err) {
+        return new Decimal(0);
+      }
+    };
+
+    const mass = concentration().times(finalvol()).dividedBy(1000);
+
+    return mass.toFixed(2);
+  };
 
   const getAgarAmount = () => {
-    const vol = parseFloat(volumeValue);
+    const vol = () => {
+      try {
+        return new Decimal(volumeValue);
+      } catch (err) {
+        return new Decimal(0);
+      }
+    };
     const percent = 0.015;
 
-    const agarAmount = vol * percent;
-
-    if (isNaN(agarAmount)) {
-      return 0;
-    }
+    const agarAmount = vol().times(percent);
 
     return agarAmount;
   };
@@ -89,7 +109,7 @@ const AgarCalculator = () => {
                 readOnly
                 disabled
                 type="text"
-                value={answer}
+                value={getMass()}
                 className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
               />
             </div>
