@@ -1,12 +1,23 @@
 "use client";
 
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
+import { useEffect, useState } from "react";
 import AgarCalculator from "../components/AgarCalculator";
 import Navbar from "../components/Navbar";
 import { releaseNotes } from "../releaseNotes";
 
 const Home = () => {
-  const lastVersionSeen = localStorage.getItem("lastVersionSeen");
+  const [showReleaseNotes, setShowReleaseNotes] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const lastVersionSeen = localStorage.getItem("lastVersionSeen");
+
+      if (lastVersionSeen !== releaseNotes.version) {
+        setShowReleaseNotes(true);
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -18,7 +29,7 @@ const Home = () => {
       >
         <AgarCalculator />
       </main>
-      <AlertDialog.Root defaultOpen={lastVersionSeen !== releaseNotes.version}>
+      <AlertDialog.Root open={showReleaseNotes}>
         <AlertDialog.Overlay className="full fixed inset-0 w-full bg-black/50" />
 
         <AlertDialog.Content className="fixed left-1/2 top-1/2 w-4/5 max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded bg-lilac-900 p-8">
@@ -29,6 +40,7 @@ const Home = () => {
           <AlertDialog.Description asChild>
             <div className="flex flex-col gap-2">
               <p>
+                {true}
                 Thank you to{" "}
                 <span className="text-rose">Katherina Resente</span> for your
                 continued support
@@ -49,6 +61,7 @@ const Home = () => {
             >
               <button
                 onClick={() => {
+                  setShowReleaseNotes(false);
                   localStorage.setItem("lastVersionSeen", releaseNotes.version);
                 }}
               >
