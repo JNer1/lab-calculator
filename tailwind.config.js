@@ -10,8 +10,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "lilac-700": "hsl(248deg, 25%, 18%)",
-        "lilac-900": "hsl(249, 22%, 12%)",
+        lilac: {
+          700: "hsl(248deg, 25%, 18%)",
+          900: "hsl(249, 22%, 12%)",
+        },
+        rose: "hsl(2deg, 55%, 83%)",
       },
       fontFamily: {
         mono: ["var(--font-noto-sans-mono)", ...fontFamily.mono],
