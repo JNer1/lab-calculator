@@ -45,7 +45,7 @@ const Home = () => {
                 <span className="text-rose">Katherina Resente</span> for your
                 continued support
               </p>
-              <h3 className="pt-4 text-lg text-teal-100">Features</h3>
+              <h3 className="pt-4 text-lg text-teal-100">What&apos;s new?</h3>
               <ul className="flex flex-col gap-2 text-sm md:text-base">
                 {releaseNotes.features.map((feat, idx) => (
                   <li key={idx}>{`- ${feat}`}</li>
