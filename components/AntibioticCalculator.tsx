@@ -1,4 +1,5 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import Decimal from "decimal.js";
 import { useState } from "react";
 import { AntibioticForm } from "../types/AntibioticForm";
 import { AntibioticUnit } from "../types/AntibioticUnits";
@@ -17,46 +18,71 @@ const AntibioticCalculator = () => {
 
   const [parent, enable] = useAutoAnimate();
 
-  const liquidFormula = (ci: number, cf: number, v: number): number => {
-    const answer = (cf * v) / ci;
-
-    if (!answer) {
-      return 0;
-    }
+  const liquidFormula = (ci: Decimal, cf: Decimal, v: Decimal): Decimal => {
+    const answer = cf.times(v).dividedBy(ci);
 
     return answer;
   };
 
-  const powderFormula = (c: number, v: number): number => {
-    const mass = (c * v) / 1000;
-
-    if (!mass) {
-      return 0;
-    }
+  const powderFormula = (c: Decimal, v: Decimal): Decimal => {
+    const mass = c.times(v).dividedBy(1000);
 
     return mass;
   };
 
   const getAnswer = (): string => {
     if (antibioticForm === "liquid") {
-      const ci = parseFloat(initialConcentration);
-      const cf = parseFloat(finalConcentration) || 0;
-      const v = parseFloat(volume) || 0;
+      const ci = () => {
+        try {
+          return new Decimal(initialConcentration);
+        } catch (err) {
+          return new Decimal(0);
+        }
+      };
 
-      const answer = liquidFormula(ci, cf, v);
+      const cf = () => {
+        try {
+          return new Decimal(finalConcentration);
+        } catch (err) {
+          return new Decimal(0);
+        }
+      };
 
-      if (answer === Infinity) {
-        return "0";
+      const v = () => {
+        try {
+          return new Decimal(volume);
+        } catch (err) {
+          return new Decimal(0);
+        }
+      };
+
+      const answer = liquidFormula(ci(), cf(), v());
+
+      if (answer.isNaN()) {
+        return "0.00";
       }
 
       return answer.toFixed(2);
     }
 
     if (antibioticForm === "powder") {
-      const c = parseFloat(finalConcentration) || 0;
-      const v = parseFloat(volume) || 0;
+      const c = () => {
+        try {
+          return new Decimal(finalConcentration);
+        } catch (err) {
+          return new Decimal(0);
+        }
+      };
 
-      return powderFormula(c, v).toFixed(2);
+      const v = () => {
+        try {
+          return new Decimal(volume);
+        } catch (err) {
+          return new Decimal(0);
+        }
+      };
+
+      return powderFormula(c(), v()).toFixed(2);
     }
 
     return "0";
