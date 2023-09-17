@@ -14,7 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${notoSansMono.variable} font-mono`}>{children}</body>
+      <body
+        className={`${notoSansMono.variable} bg-lilac-900 font-mono text-white`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
