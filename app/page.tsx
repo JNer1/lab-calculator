@@ -32,21 +32,21 @@ const Home = () => {
       <AlertDialog.Root open={showReleaseNotes}>
         <AlertDialog.Overlay className="full fixed inset-0 w-full bg-black/50" />
 
-        <AlertDialog.Content className="fixed left-1/2 top-1/2 w-4/5 max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded bg-lilac-900 p-8">
+        <AlertDialog.Content className="fixed left-1/2 top-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded bg-lilac-900 p-4">
           <AlertDialog.Title className="pb-4 text-3xl ">
             Version 1.1.0
           </AlertDialog.Title>
 
           <AlertDialog.Description asChild>
             <div className="flex flex-col gap-2">
-              <p>
+              <p className="text-sm md:text-base">
                 {true}
                 Thank you to{" "}
                 <span className="text-rose">Katherina Resente</span> for your
                 continued support
               </p>
-              <h3 className="text-lg text-teal-100">Features</h3>
-              <ul>
+              <h3 className="pt-4 text-lg text-teal-100">Features</h3>
+              <ul className="flex flex-col gap-2 text-sm md:text-base">
                 {releaseNotes.features.map((feat, idx) => (
                   <li key={idx}>{`- ${feat}`}</li>
                 ))}
