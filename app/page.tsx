@@ -25,7 +25,7 @@ const Home = () => {
 
       <main
         id="main-content"
-        className="flex min-h-screen w-full flex-col items-center justify-start p-4 lg:p-8"
+        className="flex w-full flex-col items-center justify-start p-4 md:p-8"
       >
         <AgarCalculator />
       </main>
@@ -71,10 +71,6 @@ const Home = () => {
           </div>
         </AlertDialog.Content>
       </AlertDialog.Root>
-
-      <footer className="border-t border-lilac-700 p-8 text-center">
-        <p>Because we all forget how to compute</p>
-      </footer>
     </>
   );
 };
