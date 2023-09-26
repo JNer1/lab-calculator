@@ -1,7 +1,11 @@
-"use client";
-
+import { Metadata } from "next";
 import AntibioticCalculator from "../../components/AntibioticCalculator";
 import Navbar from "../../components/Navbar";
+
+export const metadata: Metadata = {
+  title: "Antibiotic Calculator",
+  description: "Web app to calculate your antibiotic solutions",
+};
 
 const Antibiotic = () => {
   return (

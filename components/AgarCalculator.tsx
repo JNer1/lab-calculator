@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
