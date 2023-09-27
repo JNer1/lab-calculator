@@ -11,7 +11,7 @@ const ReleaseNotesDialog = () => {
     if (typeof window !== "undefined") {
       const lastVersionSeen = localStorage.getItem("lastVersionSeen");
 
-      if (lastVersionSeen !== releaseNotes.version) {
+      if (lastVersionSeen !== releaseNotes[0].version) {
         setShowReleaseNotes(true);
       }
     }
@@ -23,21 +23,18 @@ const ReleaseNotesDialog = () => {
 
       <AlertDialog.Content className="fixed left-1/2 top-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded bg-lilac-900 p-4">
         <AlertDialog.Title className="pb-4 text-3xl ">
-          Version 1.1.0
+          {`Version ${releaseNotes[0].version}`}
         </AlertDialog.Title>
 
         <AlertDialog.Description asChild>
           <div className="flex flex-col gap-2">
             <p className="text-sm md:text-base">
-              {true}
-              Thank you to <span className="text-rose">
-                Katherina Resente
-              </span>{" "}
+              Thank you to <span className="text-rose">Katherina Resente</span>{" "}
               for your continued support
             </p>
             <h3 className="pt-4 text-lg text-teal-100">What&apos;s new?</h3>
             <ul className="flex flex-col gap-2 text-sm md:text-base">
-              {releaseNotes.features.map((feat, idx) => (
+              {releaseNotes[0].features.map((feat, idx) => (
                 <li key={idx}>{`- ${feat}`}</li>
               ))}
             </ul>
@@ -52,7 +49,10 @@ const ReleaseNotesDialog = () => {
             <button
               onClick={() => {
                 setShowReleaseNotes(false);
-                localStorage.setItem("lastVersionSeen", releaseNotes.version);
+                localStorage.setItem(
+                  "lastVersionSeen",
+                  releaseNotes[0].version,
+                );
               }}
             >
               Close
