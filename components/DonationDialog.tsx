@@ -41,7 +41,7 @@ const DonationDialog = () => {
             <Link
               href={"/support"}
               className={
-                "flex w-1/2 flex-col items-center justify-center gap-4 bg-lilac-700 p-4 hover:bg-lilac-500 md:py-8"
+                "flex w-1/2 flex-col items-center justify-center gap-4 bg-lilac-700 p-4 hover:bg-lilac-500 focus:bg-lilac-500 md:py-8"
               }
               onClick={() => {
                 setShowDonationDialog(false);
@@ -54,7 +54,7 @@ const DonationDialog = () => {
               href="https://ko-fi.com/javierneri"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-1/2 flex-col items-center justify-center gap-4 bg-lilac-700 p-4 transition-colors duration-150 hover:bg-lilac-500  md:py-8"
+              className="flex w-1/2 flex-col items-center justify-center gap-4 bg-lilac-700 p-4 transition-colors duration-150 hover:bg-lilac-500 focus:bg-lilac-500  md:py-8"
             >
               <div className="flex h-3/4 items-center justify-center">
                 <GlobeSvg width="2.25rem" height="2.25rem" />
