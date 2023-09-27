@@ -1,7 +1,5 @@
-type SvgProps = {
-  width?: string;
-  height?: string;
-};
+import { SvgProps } from "../types/Svg";
+
 const HeartSvg = ({ width = "15", height = "15" }: SvgProps) => {
   return (
     <>
