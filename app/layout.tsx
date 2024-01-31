@@ -14,7 +14,7 @@ export default function RootLayout({
       >
         {children}
         <footer className="flex flex-col items-center justify-center gap-4 border-t border-lilac-700 p-8">
-          <p>Because we all forget how to compute</p>
+          <p className="text-center">Because we all forget how to compute</p>
           <DonationDialog />
         </footer>
       </body>
