@@ -1,7 +1,6 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
+import { Config } from "tailwindcss";
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -20,9 +19,9 @@ module.exports = {
         rose: "hsl(2deg, 55%, 83%)",
       },
       fontFamily: {
-        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+        mono: ["var(--font-noto-sans-mono)"],
       },
     },
   },
   plugins: [],
-};
+} satisfies Config;
