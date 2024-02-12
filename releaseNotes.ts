@@ -1,4 +1,9 @@
-export const releaseNotes = [
+type ReleaseNotes = {
+  version: string;
+  features: string[];
+};
+
+export const releaseNotes: ReleaseNotes[] = [
   {
     version: "1.2.0",
     features: ["You can now support Lab Calculator with donations"],
