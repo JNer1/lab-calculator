@@ -126,7 +126,7 @@ const AgarCalculator = () => {
           <p className="text-lg">Add this much of your medium:</p>
 
           <div className="grid grid-cols-4 gap-x-2">
-            <div className="col-span-2">
+            <div className="col-span-3">
               <input
                 readOnly
                 disabled
@@ -145,7 +145,7 @@ const AgarCalculator = () => {
             <p className="text-lg">Add this much agar</p>
 
             <div className="grid grid-cols-4 gap-x-2">
-              <div className="col-span-2">
+              <div className="col-span-3">
                 <input
                   readOnly
                   disabled

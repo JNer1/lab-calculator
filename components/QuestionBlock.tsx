@@ -21,7 +21,7 @@ const QuestionBlock = (props: QuestionBlockProps) => {
       <div className="grid w-full grid-cols-4 place-content-end gap-x-2">
         <UserInput
           id={id}
-          width="col-span-2"
+          width="col-span-3"
           value={value}
           setValue={setValue}
           disabled={disabled}

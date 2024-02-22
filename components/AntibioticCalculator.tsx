@@ -184,7 +184,7 @@ const AntibioticCalculator = () => {
           <p className="text-lg">You should put this amount of antibiotic:</p>
 
           <div className="grid grid-cols-4 gap-x-2">
-            <div className="col-span-2">
+            <div className="col-span-3">
               <input
                 disabled
                 readOnly
