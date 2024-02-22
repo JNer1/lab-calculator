@@ -5,6 +5,14 @@ type ReleaseNotes = {
 
 export const releaseNotes: ReleaseNotes[] = [
   {
+    version: "1.2.1",
+    features: [
+      "Inputs are now wider to be easier to click",
+      "Now using Geist Mono font",
+      "Centered footer text",
+    ],
+  },
+  {
     version: "1.2.0",
     features: ["You can now support Lab Calculator with donations"],
   },
