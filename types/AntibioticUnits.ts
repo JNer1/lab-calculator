@@ -1,1 +1,1 @@
-export type AntibioticUnit = "micro" | "units"
+export type AntibioticUnit = "micro" | "units";

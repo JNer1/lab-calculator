@@ -1,6 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-lilac-100: hsl(245 50% 91%);
+  --color-lilac-300: hsl(248 15% 61%);
+  --color-lilac-500: hsl(249 15% 28%);
+  --color-lilac-700: hsl(248 25% 18%);
+  --color-lilac-900: hsl(249 22% 12%);
+  --color-rose: hsl(2 55% 83%);
+}
+
+@theme inline {
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* Preserve the existing border color through Tailwind's v4 default change. */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 @layer base {
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {

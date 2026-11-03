@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
+import type { ParsedDecimal } from "../lib/calculations";
 import UserInput from "./UserInput";
 
 interface QuestionBlockProps {
@@ -7,14 +8,28 @@ interface QuestionBlockProps {
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
   unit: string;
+  validation: ParsedDecimal;
   disabled?: boolean;
 }
 
-const QuestionBlock = (props: QuestionBlockProps) => {
-  const { id, question, value, setValue, unit, disabled } = props;
+const QuestionBlock = ({
+  id,
+  question,
+  value,
+  setValue,
+  unit,
+  validation,
+  disabled,
+}: QuestionBlockProps) => {
+  const [touched, setTouched] = useState(false);
+  const error =
+    validation.status === "invalid" ||
+    (touched && validation.status === "incomplete")
+      ? validation.message
+      : undefined;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex w-full flex-col gap-2">
       <label htmlFor={id} className="text-lg">
         {question}
       </label>
@@ -25,9 +40,18 @@ const QuestionBlock = (props: QuestionBlockProps) => {
           value={value}
           setValue={setValue}
           disabled={disabled}
+          error={error}
+          onBlur={() => setTouched(true)}
         />
-        <span className="col-span-1 self-end">{unit}</span>
+        <span id={`${id}-unit`} className="col-span-1 self-end">
+          {unit}
+        </span>
       </div>
+      {error && (
+        <p id={`${id}-error`} className="text-sm text-rose" aria-live="polite">
+          {error}
+        </p>
+      )}
     </div>
   );
 };
