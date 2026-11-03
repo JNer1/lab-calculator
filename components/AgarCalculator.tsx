@@ -1,164 +1,93 @@
 "use client";
 
 import { useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { calculateAgar, calculateMedium } from "../lib/calculations";
 import QuestionBlock from "./QuestionBlock";
 import ToggleButton from "./ToggleButton";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-import Decimal from "decimal.js";
+import CalculationResult from "./CalculationResult";
 
 const AgarCalculator = () => {
   const [withAgar, setWithAgar] = useState(false);
-
-  const [recipeValue, setRecipeValue] = useState("0");
-  const [volumeValue, setVolumeValue] = useState("0");
+  const [recipeValue, setRecipeValue] = useState("");
+  const [volumeValue, setVolumeValue] = useState("");
   const [agarPercentValue, setAgarPercentValue] = useState("1.5");
-
   const [parent] = useAutoAnimate();
-
-  const getMass = () => {
-    const concentration = () => {
-      try {
-        return new Decimal(recipeValue);
-      } catch (err) {
-        return new Decimal(0);
-      }
-    };
-
-    const finalvol = () => {
-      try {
-        return new Decimal(volumeValue);
-      } catch (err) {
-        return new Decimal(0);
-      }
-    };
-
-    const mass = concentration().times(finalvol()).dividedBy(1000);
-
-    return mass.toFixed(2);
-  };
-
-  const getAgarAmount = () => {
-    const vol = () => {
-      try {
-        return new Decimal(volumeValue);
-      } catch (err) {
-        return new Decimal(0);
-      }
-    };
-    const percent = () => {
-      try {
-        return new Decimal(agarPercentValue).dividedBy(100);
-      } catch (err) {
-        return new Decimal(0);
-      }
-    };
-
-    const agarAmount = vol().times(percent());
-
-    return agarAmount;
-  };
-
-  const toggleYes = () => {
-    setWithAgar(true);
-  };
-  const toggleNo = () => {
-    setWithAgar(false);
-  };
+  const medium = calculateMedium(recipeValue, volumeValue);
+  const agar = calculateAgar(agarPercentValue, volumeValue);
 
   return (
     <div className="flex flex-col items-center gap-8">
       <h1 className="text-center text-3xl font-bold">Lab Calculator</h1>
-
       <div className="flex flex-col gap-2">
-        <p className="">Will you be adding agar powder?</p>
-
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-2">
+        <p>Will you be adding agar powder?</p>
+        <div className="grid grid-cols-2 gap-4">
           <ToggleButton
             label="Yes"
-            onClick={toggleYes}
-            active={withAgar === true}
+            onClick={() => setWithAgar(true)}
+            active={withAgar}
           />
-
           <ToggleButton
             label="No"
-            onClick={toggleNo}
-            active={withAgar === false}
+            onClick={() => setWithAgar(false)}
+            active={!withAgar}
           />
         </div>
       </div>
-
       <div
         ref={parent}
         className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16"
       >
         <QuestionBlock
           id="agar-recipe"
-          question="What is the agar recipe?"
+          question="What is the medium recipe?"
           value={recipeValue}
           setValue={setRecipeValue}
           unit="g/L"
+          validation={medium.recipe}
         />
-
         <QuestionBlock
           id="final-vol"
           question="What is the final volume you need?"
           value={volumeValue}
           setValue={setVolumeValue}
           unit="mL"
+          validation={medium.volume}
         />
-
         {withAgar && (
-          <QuestionBlock
-            id="agar-percentage"
-            question="What perecent agar do you need?"
-            value={agarPercentValue}
-            setValue={setAgarPercentValue}
-            unit="%"
-          />
+          <>
+            <QuestionBlock
+              id="agar-percentage"
+              question="What agar concentration do you need?"
+              value={agarPercentValue}
+              setValue={setAgarPercentValue}
+              unit="% w/v"
+              validation={agar.percent}
+            />
+            <p className="text-sm">
+              Use an agar-free medium base when adding agar here. The
+              calculation assumes the medium contains no agar. Percent w/v means
+              grams per 100 mL of final preparation.
+            </p>
+          </>
         )}
       </div>
-
-      <div
-        ref={parent}
-        className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16"
-      >
-        <div className="flex flex-col gap-2">
-          <p className="text-lg">Add this much of your medium:</p>
-
-          <div className="grid grid-cols-4 gap-x-2">
-            <div className="col-span-3">
-              <input
-                readOnly
-                disabled
-                type="text"
-                value={getMass()}
-                className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
-              />
-            </div>
-
-            <span>g</span>
-          </div>
-        </div>
-
+      <div className="flex w-full max-w-lg flex-col items-start gap-8 rounded-md bg-lilac-700 p-4 lg:px-16">
+        <CalculationResult
+          id="medium-result"
+          label="Medium to weigh:"
+          value={medium.mass}
+          unit="g"
+        />
         {withAgar && (
-          <div className="flex flex-col gap-2">
-            <p className="text-lg">Add this much agar</p>
-
-            <div className="grid grid-cols-4 gap-x-2">
-              <div className="col-span-3">
-                <input
-                  readOnly
-                  disabled
-                  type="text"
-                  value={getAgarAmount().toFixed(2)}
-                  className="w-full rounded-sm bg-zinc-100 px-2 text-right text-2xl font-semibold text-black"
-                />
-              </div>
-
-              <span>g</span>
-            </div>
-          </div>
+          <CalculationResult
+            id="agar-result"
+            label="Agar to weigh:"
+            value={agar.mass}
+            unit="g"
+          />
         )}
+        <p className="text-sm">Prepare to the requested final volume.</p>
       </div>
     </div>
   );

@@ -1,1 +1,1 @@
-export type AntibioticForm = "powder" | "liquid"
+export type AntibioticForm = "powder" | "liquid";

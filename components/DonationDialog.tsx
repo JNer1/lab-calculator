@@ -13,7 +13,7 @@ const DonationDialog = () => {
     <AlertDialog.Root open={showDonationDialog}>
       <AlertDialog.Trigger asChild>
         <button
-          className="w-fit text-rose/50 transition-colors  duration-150 hover:text-rose focus:text-rose"
+          className="w-fit text-rose/50 transition-colors duration-150 hover:text-rose focus:text-rose"
           onClick={() => {
             setShowDonationDialog(true);
           }}
@@ -27,7 +27,7 @@ const DonationDialog = () => {
       <AlertDialog.Overlay className="full fixed inset-0 w-full bg-black/50" />
 
       <AlertDialog.Content
-        className="fixed left-1/2  top-1/2 w-11/12  max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded bg-lilac-900 p-4 text-lilac-100 md:p-8 "
+        className="fixed top-1/2 left-1/2 w-11/12 max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded bg-lilac-900 p-4 text-lilac-100 md:p-8"
         onEscapeKeyDown={() => {
           setShowDonationDialog(false);
         }}
@@ -54,7 +54,7 @@ const DonationDialog = () => {
               href="https://ko-fi.com/javierneri"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-1/2 flex-col items-center justify-center gap-4 bg-lilac-700 p-4 transition-colors duration-150 hover:bg-lilac-500 focus:bg-lilac-500  md:py-8"
+              className="flex w-1/2 flex-col items-center justify-center gap-4 bg-lilac-700 p-4 transition-colors duration-150 hover:bg-lilac-500 focus:bg-lilac-500 md:py-8"
             >
               <div className="flex h-3/4 items-center justify-center">
                 <GlobeSvg width="2.25rem" height="2.25rem" />
